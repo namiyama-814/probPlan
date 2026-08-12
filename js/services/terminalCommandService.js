@@ -91,7 +91,8 @@ function tokenize(input) {
 
 function parseFlags(tokens) {
   const values = [];
-  const flags = {};
+  // --__proto__ のようなキーを渡されても Object.prototype を汚さないよう、プロトタイプなしで作る。
+  const flags = Object.create(null);
 
   for (let index = 0; index < tokens.length; index++) {
     const token = tokens[index];
